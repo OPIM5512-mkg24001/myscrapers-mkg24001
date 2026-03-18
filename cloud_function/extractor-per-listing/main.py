@@ -149,6 +149,23 @@ def parse_listing(text: str) -> dict:
     if mi is not None:
         d["mileage"] = mi
 
+    # --- NEW V2 EXTRACTION LOGIC ---
+    
+    # 1. Extract Transmission
+    # \b ensures we only match whole words. re.IGNORECASE makes it case-insensitive.
+    tx_match = re.search(r'\b(automatic|manual|auto|stick)\b', text, re.IGNORECASE)
+    if tx_match:
+        d['transmission'] = tx_match.group(1).lower()
+    else:
+        d['transmission'] = None
+
+    # 2. Extract Fuel Type
+    fuel_match = re.search(r'\b(gasoline|gas|diesel|electric|hybrid)\b', text, re.IGNORECASE)
+    if fuel_match:
+        d['fuel_type'] = fuel_match.group(1).lower()
+    else:
+        d['fuel_type'] = None
+
     return d
 
 # -------------------- HTTP ENTRY --------------------
@@ -207,6 +224,7 @@ def extract_http(request: Request):
 
             out_key = f"{STRUCTURED_PREFIX}/run_id={run_id}/jsonl/{post_id}.jsonl"
 
+            # Check if we should skip existing
             if not overwrite and bucket.blob(out_key).exists():
                 skipped += 1
             else:
