@@ -3,7 +3,7 @@ name: Deploy materialize-v2 (CF Gen2 + Cloud Scheduler)
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ main, dw-dev ]
     paths:
       # Changed paths to look for the v2 folder and v2 yaml
       - 'cloud_function/materialize-v2/**'
