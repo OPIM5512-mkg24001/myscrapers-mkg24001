@@ -43,7 +43,7 @@ def _list_run_ids(bucket: str, structured_prefix: str) -> list[str]:
             rid = tail.split("run_id=", 1)[1]
             if RUN_ID_ISO_RE.match(rid) or RUN_ID_PLAIN_RE.match(rid):
                 run_ids.append(rid)
-    return sorted(run_ids)
+    return sorted(run_ids)[-2:]
 
 def _jsonl_records_for_run(bucket: str, structured_prefix: str, run_id: str):
     """Yield dict records from .jsonl under .../run_id=<run_id>/jsonl/ (one JSON per file)."""
