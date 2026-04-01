@@ -164,12 +164,18 @@ def _vertex_extract_fields(raw_text: str) -> dict:
     schema = {
         "type": "object",
         "properties": {
-            "price": {"type": "integer", "nullable": True},
-            "year": {"type": "integer", "nullable": True},
-            "make": {"type": "string", "nullable": True},
-            "model": {"type": "string", "nullable": True},
-            "mileage": {"type": "integer", "nullable": True},
+            "price":     {"type": "integer", "nullable": True},
+            "year":      {"type": "integer", "nullable": True},
+            "make":      {"type": "string",  "nullable": True},
+            "model":     {"type": "string",  "nullable": True},
+            "mileage":   {"type": "integer", "nullable": True},
+            # --- NEW LLM FIELDS ---
+            "body_type": {"type": "string",  "nullable": True},
+            "color":     {"type": "string",  "nullable": True},
+            "condition": {"type": "string",  "nullable": True}
         },
+        # Note: We do NOT add the new fields to the 'required' list. 
+        # If the LLM can't find a color, we want it to output null, not break!
         "required": ["price", "year", "make", "model", "mileage"]
     }
 
