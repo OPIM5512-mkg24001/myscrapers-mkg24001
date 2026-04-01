@@ -324,6 +324,9 @@ def llm_extract_http(request: Request):
                 "make": parsed.get("make"),
                 "model": parsed.get("model"),
                 "mileage": parsed.get("mileage"),
+                "body_type": parsed.get("body_type"), # <-- ADD THIS
+                "color": parsed.get("color"),         # <-- ADD THIS
+                "condition": parsed.get("condition"), # <-- ADD THIS
                 "llm_provider": "vertex",
                 "llm_model": LLM_MODEL,
                 "llm_ts": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
