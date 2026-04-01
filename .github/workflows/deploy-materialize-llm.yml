@@ -25,7 +25,7 @@ env:
   TIMEOUT_SECONDS: "900"
   MEMORY: "2Gi"
   # 2. Tell it to read from the LLM structured folder
-  STRUCTURED_PREFIX: "structured-llm" 
+  STRUCTURED_PREFIX: "structured" 
   RUNTIME_SA: ${{ vars.RUNTIME_SA }}
   DEPLOYER_SA: ${{ vars.DEPLOYER_SA }}
   WORKLOAD_IDENTITY_PROVIDER: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
