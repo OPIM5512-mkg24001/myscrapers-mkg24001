@@ -29,6 +29,7 @@ CSV_COLUMNS = [
     "post_id", "run_id", "scraped_at",
     "price", "year", "make", "model", "mileage",
     "body_type", "color", "condition", # <-- NEW FIELDS
+    "city", "state", "zip_code", # <-- NEW LOCATION FIELDS
     "source_txt"
 ]
 
