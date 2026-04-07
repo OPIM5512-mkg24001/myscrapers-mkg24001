@@ -3,11 +3,11 @@ name: Deploy Materialize LLM (CF Gen2 + Cloud Scheduler)
 on:
   workflow_dispatch:
   push:
-    branches: [ main, dw-dev ]
+    branches: [ main ]
     paths:
       # Changed paths to look for the v2 folder and v2 yaml
-      - 'cloud_function/materialize-v2/**'
-      - '.github/workflows/deploy-materialize-v2.yml'
+      - 'cloud_function/materialize-llm/**'
+      - '.github/workflows/deploy-materialize-llm.yml'
 
 permissions:
   contents: read
