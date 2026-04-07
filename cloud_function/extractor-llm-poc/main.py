@@ -172,7 +172,11 @@ def _vertex_extract_fields(raw_text: str) -> dict:
             # --- NEW LLM FIELDS ---
             "body_type": {"type": "string",  "nullable": True},
             "color":     {"type": "string",  "nullable": True},
-            "condition": {"type": "string",  "nullable": True}
+            "condition": {"type": "string",  "nullable": True},
+            # --- NEW LOCATION FIELDS ---
+            "city":      {"type": "string",  "nullable": True},
+            "state":     {"type": "string",  "nullable": True},
+            "zip_code":  {"type": "string",  "nullable": True}
         },
         # Note: We do NOT add the new fields to the 'required' list. 
         # If the LLM can't find a color, we want it to output null, not break!
@@ -327,6 +331,10 @@ def llm_extract_http(request: Request):
                 "body_type": parsed.get("body_type"), # <-- ADD THIS
                 "color": parsed.get("color"),         # <-- ADD THIS
                 "condition": parsed.get("condition"), # <-- ADD THIS
+                # --- NEW LOCATION FIELDS ---
+                "city": parsed.get("city"),
+                "state": parsed.get("state"),
+                "zip_code": parsed.get("zip_code"),
                 "llm_provider": "vertex",
                 "llm_model": LLM_MODEL,
                 "llm_ts": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
